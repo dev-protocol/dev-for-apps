@@ -34,7 +34,14 @@ const httpTrigger: AzureFunction = async function (
 		)
 	)
 
-	context.log(`net: ${net}, web3: ${web3}`)
+	const account = web3.eth.accounts.recover(
+		'Please sign to confirm your address.',
+		signature
+	)
+
+	context.log(`net: ${net}, account: ${account}`)
+
+	// update address name or get address name
 
 	return resp(200, 'OK')
 }
