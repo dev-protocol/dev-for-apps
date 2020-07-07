@@ -17,6 +17,7 @@
 	"author": "",
 	"license": "MPL-2.0",
 	"dependencies": {
+		"@azure/cosmos": "^3.7.4",
 		"ramda": "^0.27.0",
 		"web3": "^1.2.7"
 	},
