@@ -16,10 +16,14 @@ const httpTrigger: AzureFunction = async function (
 	req: HttpRequest
 ): Promise<void> {
 	const resp = responseCreator(context)
-	const { query } = req
+	const { method, query } = req
 	const { name, signature, network } = query
 
-	if (name === null || signature === null || network === null) {
+	if (signature === undefined || network === undefined) {
+		return resp(400)
+	}
+
+	if (method === 'POST' && name === undefined) {
 		return resp(400)
 	}
 
