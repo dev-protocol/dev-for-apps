@@ -1,5 +1,7 @@
 import { AzureFunction, Context, HttpRequest } from '@azure/functions'
+import { CosmosClient } from '@azure/cosmos'
 import Web3 from 'web3'
+import { User, reader, writer } from './db'
 
 const responseCreator = (context: Context) => (
 	status = 200,
@@ -42,8 +44,13 @@ const httpTrigger: AzureFunction = async function (
 	context.log(`net: ${net}, account: ${account}`)
 
 	// update address name or get address name
+	const result = await (method === 'POST'
+		? writer(CosmosClient)({ id: account, addressName: name })
+		: reader(CosmosClient)(account))
 
-	return resp(200, 'OK')
+	context.log(`result: ${result.resource?.addressName}, ${result.resource?.id}`)
+
+	return resp(200, result.resource as User)
 }
 
 export default httpTrigger
