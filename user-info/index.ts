@@ -18,35 +18,37 @@ const httpTrigger: AzureFunction = async function (
 	req: HttpRequest
 ): Promise<void> {
 	const resp = responseCreator(context)
-	const { method, query } = req
-	const { name, signature, network } = query
-
-	if (signature === undefined || network === undefined) {
-		return resp(400)
-	}
-
-	if (method === 'POST' && name === undefined) {
-		return resp(400)
-	}
+	const { method } = req
+	const { id, network } = req.params
+	const { name = '', signature = '', message = '' } =
+		method === 'POST' ? req.body : {}
 
 	const net = network === 'main' || network === 'mainnet' ? 'mainnet' : network
-	const web3 = new Web3(
-		new Web3.providers.HttpProvider(
-			`https://${net}.infura.io/v3/${process.env.INFURA_IO_PROJECT}`
+
+	if (method === 'POST') {
+		if (name === '' || signature === '' || message === '') {
+			return resp(400)
+		}
+
+		const web3 = new Web3(
+			new Web3.providers.HttpProvider(
+				`https://${net}.infura.io/v3/${process.env.INFURA_IO_PROJECT}`
+			)
 		)
-	)
 
-	const account = web3.eth.accounts.recover(
-		'Please sign to confirm your address.',
-		signature
-	)
+		const account = web3.eth.accounts.recover(message, signature)
 
-	context.log(`net: ${net}, account: ${account}`)
+		context.log(`net: ${net}, account: ${account}, id: ${id}`)
+
+		if (account !== id) {
+			return resp(400)
+		}
+	}
 
 	// update address name or get address name
 	const result = await (method === 'POST'
-		? writer(CosmosClient)({ id: account, addressName: name })
-		: reader(CosmosClient)(account))
+		? writer(CosmosClient)({ id, addressName: name })
+		: reader(CosmosClient)(id))
 
 	context.log(`result: ${result.resource?.addressName}, ${result.resource?.id}`)
 
