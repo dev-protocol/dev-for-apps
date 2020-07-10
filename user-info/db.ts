@@ -10,7 +10,7 @@ const COSMOS = {
 	container: 'User',
 }
 
-const createDBInstance = async (
+export const createDBInstance = async (
 	Client: typeof CosmosClient,
 	opts: {
 		readonly database: string
