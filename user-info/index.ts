@@ -13,7 +13,7 @@ const responseCreator = (context: Context) => (
 	}
 }
 
-const httpTrigger: AzureFunction = async function (
+export const httpTrigger: AzureFunction = async function (
 	context: Context,
 	req: HttpRequest
 ): Promise<void> {
@@ -30,12 +30,7 @@ const httpTrigger: AzureFunction = async function (
 			return resp(400)
 		}
 
-		const web3 = new Web3(
-			new Web3.providers.HttpProvider(
-				`https://${net}.infura.io/v3/${process.env.INFURA_IO_PROJECT}`
-			)
-		)
-
+		const web3 = new Web3()
 		const account = web3.eth.accounts.recover(message, signature)
 
 		context.log(`net: ${net}, account: ${account}, id: ${id}`)
@@ -54,5 +49,3 @@ const httpTrigger: AzureFunction = async function (
 
 	return resp(200, result.resource as User)
 }
-
-export default httpTrigger
