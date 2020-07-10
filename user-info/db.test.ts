@@ -2,7 +2,9 @@ import test from 'ava'
 import { CosmosClient } from '@azure/cosmos'
 import { createDBInstance, reader, writer } from './db'
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const createStub = () =>
+	// eslint-disable-next-line functional/no-class
 	class Stub {
 		public readonly databases = {
 			createIfNotExists: async ({ id: database }: { readonly id: string }) => ({

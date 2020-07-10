@@ -1,3 +1,4 @@
+/* eslint-disable functional/no-conditional-statement */
 import { AzureFunction, Context, HttpRequest } from '@azure/functions'
 import { CosmosClient } from '@azure/cosmos'
 import Web3 from 'web3'
@@ -7,6 +8,7 @@ const responseCreator = (context: Context) => (
 	status = 200,
 	body: string | Record<string, unknown> = ''
 ) => {
+	// eslint-disable-next-line functional/immutable-data, functional/no-expression-statement
 	context.res = {
 		status,
 		body,
@@ -19,11 +21,9 @@ export const httpTrigger: AzureFunction = async function (
 ): Promise<void> {
 	const resp = responseCreator(context)
 	const { method } = req
-	const { id, network } = req.params
+	const { id } = req.params
 	const { name = '', signature = '', message = '' } =
 		method === 'POST' ? req.body : {}
-
-	const net = network === 'main' || network === 'mainnet' ? 'mainnet' : network
 
 	if (method === 'POST') {
 		if (name === '' || signature === '' || message === '') {
@@ -32,8 +32,6 @@ export const httpTrigger: AzureFunction = async function (
 
 		const web3 = new Web3()
 		const account = web3.eth.accounts.recover(message, signature)
-
-		context.log(`net: ${net}, account: ${account}, id: ${id}`)
 
 		if (account !== id) {
 			return resp(400)
@@ -44,8 +42,6 @@ export const httpTrigger: AzureFunction = async function (
 	const result = await (method === 'POST'
 		? writer(CosmosClient)({ id, addressName: name })
 		: reader(CosmosClient)(id))
-
-	context.log(`result: ${result.resource?.addressName}, ${result.resource?.id}`)
 
 	return resp(200, result.resource as User)
 }

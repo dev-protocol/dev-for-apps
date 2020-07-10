@@ -6,11 +6,13 @@
 	"env": {
 		"es6": true
 	},
-	"plugins": ["@typescript-eslint", "prettier"],
+	"plugins": ["@typescript-eslint", "functional", "prettier"],
 	"extends": [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/eslint-recommended",
 		"plugin:@typescript-eslint/recommended",
+		"plugin:functional/external-recommended",
+		"plugin:functional/all",
 		"prettier/@typescript-eslint",
 		"plugin:prettier/recommended"
 	],

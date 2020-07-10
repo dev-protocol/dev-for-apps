@@ -48,10 +48,10 @@ const createReq = (
 	} as unknown) as HttpRequest)
 
 const prepare = (): {
-	address: string
-	network: string
-	signature: string
-	message: string
+	readonly address: string
+	readonly network: string
+	readonly signature: string
+	readonly message: string
 } => {
 	const web3 = new Web3()
 	const account = web3.eth.accounts.create()
@@ -127,21 +127,14 @@ test('invalid post request with empty request body', async (t) => {
 	const method = 'POST'
 	const addressName = 'new-address-name'
 
-	for (const params of [
-		{ addressName, signature },
-		{ message, signature },
-		{ addressName, message },
-	]) {
+	const testExec = async (
+		message?: string,
+		addressName?: string,
+		signature?: string
+	): Promise<void> => {
 		await httpTrigger(
 			context,
-			createReq(
-				network,
-				id,
-				params.message,
-				params.addressName,
-				params.signature,
-				method
-			)
+			createReq(network, id, message, addressName, signature, method)
 		)
 
 		t.deepEqual(context.res, {
@@ -149,4 +142,11 @@ test('invalid post request with empty request body', async (t) => {
 			body: '',
 		})
 	}
+
+	const params = [
+		{ addressName, signature },
+		{ message, signature },
+		{ addressName, message },
+	]
+	params.map((p) => testExec(p.message, p.addressName, p.signature))
 })
