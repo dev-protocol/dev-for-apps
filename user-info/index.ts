@@ -22,11 +22,11 @@ export const httpTrigger: AzureFunction = async function (
 	const resp = responseCreator(context)
 	const { method } = req
 	const { id } = req.params
-	const { name = '', signature = '', message = '' } =
+	const { displayName = '', signature = '', message = '' } =
 		method === 'POST' ? req.body : {}
 
 	if (method === 'POST') {
-		if (name === '' || signature === '' || message === '') {
+		if (displayName === '' || signature === '' || message === '') {
 			return resp(400)
 		}
 
@@ -40,7 +40,7 @@ export const httpTrigger: AzureFunction = async function (
 
 	// update address name or get address name
 	const result = await (method === 'POST'
-		? writer(CosmosClient)({ id, addressName: name })
+		? writer(CosmosClient)({ id, displayName })
 		: reader(CosmosClient)(id))
 
 	return resp(200, result.resource as User)
