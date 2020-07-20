@@ -2,7 +2,7 @@ import { CosmosClient, Container, ItemResponse } from '@azure/cosmos'
 
 export type User = {
 	readonly id: string // key is address
-	readonly addressName: string
+	readonly displayName: string
 }
 
 const COSMOS = {

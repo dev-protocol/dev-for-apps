@@ -9,7 +9,7 @@ stub(db, 'reader').callsFake(() => async (id: string) => {
 	return {
 		resource: {
 			id,
-			addressName: 'req-dummy-address-name',
+			displayName: 'req-dummy-address-name',
 		},
 	} as any
 })
@@ -30,7 +30,7 @@ const createReq = (
 	network?: string,
 	id?: string,
 	message?: string,
-	addressName?: string,
+	displayName?: string,
 	signature?: string,
 	method = 'GET'
 ): HttpRequest =>
@@ -42,7 +42,7 @@ const createReq = (
 		},
 		body: {
 			message,
-			name: addressName,
+			displayName,
 			signature,
 		},
 	} as unknown) as HttpRequest)
@@ -77,7 +77,7 @@ test('get user data', async (t) => {
 		status: 200,
 		body: {
 			id: id,
-			addressName: 'req-dummy-address-name',
+			displayName: 'req-dummy-address-name',
 		},
 	})
 })
@@ -86,18 +86,18 @@ test('post user data', async (t) => {
 	const { network, address: id, signature, message } = prepare()
 	const context = createContext()
 	const method = 'POST'
-	const addressName = 'new-address-name'
+	const displayName = 'new-address-name'
 
 	await httpTrigger(
 		context,
-		createReq(network, id, message, addressName, signature, method)
+		createReq(network, id, message, displayName, signature, method)
 	)
 
 	t.deepEqual(context.res, {
 		status: 200,
 		body: {
 			id,
-			addressName,
+			displayName,
 		},
 	})
 })
@@ -106,13 +106,13 @@ test('invalid post request with invalid signature', async (t) => {
 	const { network, address: id, message } = prepare()
 	const context = createContext()
 	const method = 'POST'
-	const addressName = 'new-address-name'
+	const displayName = 'new-address-name'
 	const invalidSignature =
 		'0xde3857695618adfc20f598d59dc1fdfc820653e1affb2d16ccb5cf1821ead75a13d6b2cb50579bbec1d0a314ee417a356d6f3db389ce0a055e6badd03bbc50aaaa'
 
 	await httpTrigger(
 		context,
-		createReq(network, id, message, addressName, invalidSignature, method)
+		createReq(network, id, message, displayName, invalidSignature, method)
 	)
 
 	t.deepEqual(context.res, {
@@ -125,16 +125,16 @@ test('invalid post request with empty request body', async (t) => {
 	const { network, address: id, signature, message } = prepare()
 	const context = createContext()
 	const method = 'POST'
-	const addressName = 'new-address-name'
+	const displayName = 'new-address-name'
 
 	const testExec = async (
 		message?: string,
-		addressName?: string,
+		displayName?: string,
 		signature?: string
 	): Promise<void> => {
 		await httpTrigger(
 			context,
-			createReq(network, id, message, addressName, signature, method)
+			createReq(network, id, message, displayName, signature, method)
 		)
 
 		t.deepEqual(context.res, {
@@ -144,9 +144,9 @@ test('invalid post request with empty request body', async (t) => {
 	}
 
 	const params = [
-		{ addressName, signature },
+		{ displayName, signature },
 		{ message, signature },
-		{ addressName, message },
+		{ displayName, message },
 	]
-	params.map((p) => testExec(p.message, p.addressName, p.signature))
+	params.map((p) => testExec(p.message, p.displayName, p.signature))
 })

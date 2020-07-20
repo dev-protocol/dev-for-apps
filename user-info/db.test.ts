@@ -61,7 +61,7 @@ const createStub = () =>
 													? null
 													: {
 															id,
-															addressName: 'dummy-test-name',
+															displayName: 'dummy-test-name',
 													  },
 										}
 									},
@@ -85,7 +85,7 @@ test('An instance of the database is created', async (t) => {
 	)
 	const result = await instance.items.create({
 		id: 'dummy-id',
-		addressName: 'dummy-name',
+		displayName: 'dummy-name',
 	})
 	t.is(result.item.container.database.id, 'dummy-database')
 	t.is(result.item.container.id, 'dummy-container')
@@ -95,33 +95,33 @@ test('insert new user data', async (t) => {
 	const result = await writer((createStub() as unknown) as typeof CosmosClient)(
 		{
 			id: 'dummy-id',
-			addressName: 'dummy-name',
+			displayName: 'dummy-name',
 		}
 	)
 	t.is(result.item.container.database.id, 'Stakes.social')
 	t.is(result.item.container.id, 'User')
 	t.deepEqual((result as any).options, {
 		id: 'dummy-id',
-		addressName: 'dummy-name',
+		displayName: 'dummy-name',
 	})
 })
 
 test('upsert user data', async (t) => {
 	await writer((createStub() as unknown) as typeof CosmosClient)({
 		id: 'dummy-id',
-		addressName: 'dummy-name',
+		displayName: 'dummy-name',
 	})
 	const result = await writer((createStub() as unknown) as typeof CosmosClient)(
 		{
 			id: 'dummy-id2',
-			addressName: 'dummy-name2',
+			displayName: 'dummy-name2',
 		}
 	)
 	t.is(result.item.container.database.id, 'Stakes.social')
 	t.is(result.item.container.id, 'User')
 	t.deepEqual((result as any).options, {
 		id: 'dummy-id2',
-		addressName: 'dummy-name2',
+		displayName: 'dummy-name2',
 	})
 })
 
@@ -132,7 +132,7 @@ test('read empty user data', async (t) => {
 	t.is(result.item.container.database.id, 'Stakes.social')
 	t.is(result.item.container.id, 'User')
 	t.is(result.resource?.id, undefined)
-	t.is(result.resource?.addressName, undefined)
+	t.is(result.resource?.displayName, undefined)
 })
 
 test('read user data', async (t) => {
@@ -142,5 +142,5 @@ test('read user data', async (t) => {
 	t.is(result.item.container.database.id, 'Stakes.social')
 	t.is(result.item.container.id, 'User')
 	t.is(result.resource?.id, 'dummy-test-id')
-	t.is(result.resource?.addressName, 'dummy-test-name')
+	t.is(result.resource?.displayName, 'dummy-test-name')
 })
