@@ -1,4 +1,9 @@
-import { CosmosClient, Container, ItemResponse } from '@azure/cosmos'
+import {
+	CosmosClient,
+	Container,
+	FeedResponse,
+	ItemResponse,
+} from '@azure/cosmos'
 
 export type Tag = {
 	readonly name: string
@@ -46,4 +51,16 @@ export const existTag = (client: typeof CosmosClient) => async (
 	name: string
 ): Promise<boolean> => {
 	return reader(client)(name) !== null
+}
+
+export const getTagsByWordWithForwardMatch = (
+	client: typeof CosmosClient
+) => async (word: string): Promise<FeedResponse<Tag>> => {
+	const container = await createDBInstance(client, COSMOS, process.env)
+	return container.items
+		.query<Tag>({
+			query: 'SELECT t.name FROM Tag t WHERE STARTSWITH(t.name, @p1)',
+			parameters: [{ name: '@p1', value: word }],
+		})
+		.fetchAll()
 }
