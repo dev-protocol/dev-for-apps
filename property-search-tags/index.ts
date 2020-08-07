@@ -22,7 +22,7 @@ export const httpTrigger: AzureFunction = async function (
 	}
 
 	// get search word
-	// NOTE: Currently, you can only specify one search tag name
+	// NOTE: can only specify one search tag name, now.
 	const tag = tags.split(' ')[0]
 
 	// check only blank
@@ -30,7 +30,7 @@ export const httpTrigger: AzureFunction = async function (
 		return resp(400)
 	}
 
-	const results = await getAllPropertiesByTag(CosmosClient)(tag)
+	const result = await getAllPropertiesByTag(CosmosClient)(tag)
 
-	return resp(200, { result: results.resources as readonly PropertyTags[] })
+	return resp(200, { result: result.resources as readonly PropertyTags[] })
 }
