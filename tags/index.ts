@@ -9,7 +9,7 @@ export const httpTrigger: AzureFunction = async function (
 	req: HttpRequest
 ): Promise<void> {
 	const resp = responseCreator(context)
-	const { w: searchWord } = req.params
+	const { w: searchWord } = req.query
 
 	const result = await getTagsByWordWithForwardMatch(CosmosClient)(searchWord)
 
