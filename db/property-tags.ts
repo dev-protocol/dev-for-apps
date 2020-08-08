@@ -67,3 +67,19 @@ export const getAllPropertiesByTag = (client: typeof CosmosClient) => async (
 		})
 		.fetchAll()
 }
+
+export const countAllPropertiesByTag = (client: typeof CosmosClient) => async (
+	tag: string
+): Promise<number> => {
+	const container = await createDBInstance(client, COSMOS, process.env)
+	return container.items
+		.query<number>({
+			query:
+				'SELECT VALUE COUNT(p.id) FROM PropertyTags p WHERE ARRAY_CONTAINS(p.tags, @p1)',
+			parameters: [{ name: '@p1', value: tag }],
+		})
+		.fetchAll()
+		.then((r) => {
+			return r.resources[0]
+		})
+}

@@ -6,7 +6,7 @@ import {
 } from '@azure/cosmos'
 
 export type Tag = {
-	readonly name: string
+	readonly id: string // tag name is primary id
 }
 
 const COSMOS = {
@@ -41,10 +41,17 @@ export const writer = (client: typeof CosmosClient) => async (
 }
 
 export const reader = (client: typeof CosmosClient) => async (
+	id: string
+): Promise<ItemResponse<Tag>> => {
+	const container = await createDBInstance(client, COSMOS, process.env)
+	return container.item(id).read()
+}
+
+export const deleteTag = (client: typeof CosmosClient) => async (
 	name: string
 ): Promise<ItemResponse<Tag>> => {
 	const container = await createDBInstance(client, COSMOS, process.env)
-	return container.item(name).read()
+	return container.item(name).delete()
 }
 
 export const existTag = (client: typeof CosmosClient) => async (
@@ -59,7 +66,7 @@ export const getTagsByWordWithForwardMatch = (
 	const container = await createDBInstance(client, COSMOS, process.env)
 	return container.items
 		.query<Tag>({
-			query: 'SELECT t.name FROM Tag t WHERE STARTSWITH(t.name, @p1)',
+			query: 'SELECT t.id FROM Tag t WHERE STARTSWITH(t.id, @p1)',
 			parameters: [{ name: '@p1', value: word }],
 		})
 		.fetchAll()
