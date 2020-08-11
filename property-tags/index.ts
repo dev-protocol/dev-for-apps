@@ -2,6 +2,7 @@
 /* eslint-disable functional/no-expression-statement  */
 import { AzureFunction, Context, HttpRequest } from '@azure/functions'
 import { CosmosClient, ItemResponse } from '@azure/cosmos'
+import Web3 from 'web3'
 import {
 	PropertyTags,
 	countAllPropertiesByTag,
@@ -41,7 +42,22 @@ export const httpTrigger: AzureFunction = async function (
 	const resp = responseCreator(context)
 	const { method } = req
 	const { id } = req.params
-	const { tags = '' } = method === 'POST' ? req.body : {}
+	const { tags = '', account = '', signature = '', message = '' } =
+		method === 'POST' ? req.body : {}
+
+	// auth
+	if (method === 'POST') {
+		if (account === '' || signature === '' || message === '') {
+			return resp(400)
+		}
+
+		const web3 = new Web3()
+		const recoverAccount = web3.eth.accounts.recover(message, signature)
+
+		if (recoverAccount !== account) {
+			return resp(400)
+		}
+	}
 
 	const data = async (method: string | null): Promise<PropertyTags> => {
 		const result = await reader(CosmosClient)(id)
