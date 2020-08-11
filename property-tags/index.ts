@@ -12,7 +12,6 @@ import { deleteTag, writer as tagWriter } from '../db/tag'
 import { responseCreator } from '../utils'
 
 const updateTags = async (
-	ctx: Context,
 	oldTags: readonly string[],
 	newTags: readonly string[]
 ): Promise<void> => {
@@ -53,7 +52,7 @@ export const httpTrigger: AzureFunction = async function (
 			const result = await writer(CosmosClient)({ id, tags: splitedTags }).then(
 				(r: ItemResponse<PropertyTags>) => {
 					// eslint-disable-next-line functional/functional-parameters
-					return updateTags(context, readTags.tags, splitedTags).then(() => {
+					return updateTags(readTags?.tags, splitedTags).then(() => {
 						return r
 					})
 				}
