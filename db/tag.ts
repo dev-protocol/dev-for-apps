@@ -54,12 +54,6 @@ export const deleteTag = (client: typeof CosmosClient) => async (
 	return container.item(name).delete()
 }
 
-export const existTag = (client: typeof CosmosClient) => async (
-	name: string
-): Promise<boolean> => {
-	return reader(client)(name) !== null
-}
-
 export const getTagsByWordWithForwardMatch = (
 	client: typeof CosmosClient
 ) => async (word: string): Promise<FeedResponse<Tag>> => {
