@@ -1,0 +1,18 @@
+{
+	"bindings": [
+		{
+			"authLevel": "anonymous",
+			"type": "httpTrigger",
+			"direction": "in",
+			"name": "req",
+			"methods": ["post"],
+			"route": "{network}/properties/search/tags"
+		},
+		{
+			"type": "http",
+			"direction": "out",
+			"name": "res"
+		}
+	],
+	"scriptFile": "../dist/property-search-tags/index.js"
+}

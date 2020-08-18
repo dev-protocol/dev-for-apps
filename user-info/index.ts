@@ -3,17 +3,7 @@ import { AzureFunction, Context, HttpRequest } from '@azure/functions'
 import { CosmosClient } from '@azure/cosmos'
 import Web3 from 'web3'
 import { User, reader, writer } from './db'
-
-const responseCreator = (context: Context) => (
-	status = 200,
-	body: string | Record<string, unknown> = ''
-) => {
-	// eslint-disable-next-line functional/immutable-data, functional/no-expression-statement
-	context.res = {
-		status,
-		body,
-	}
-}
+import { responseCreator } from '../utils'
 
 export const httpTrigger: AzureFunction = async function (
 	context: Context,
