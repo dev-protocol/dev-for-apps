@@ -6,11 +6,13 @@ import { httpTrigger } from '.'
 import * as db from '../db/property-tags'
 import * as tagDB from '../db/tag'
 
+const fakeStore: ReadonlyMap<string, readonly string[] | undefined> = new Map()
+
 stub(db, 'reader').callsFake(() => async (id: string) => {
 	return {
 		resource: {
 			id,
-			tags: ['test', 'dummy'],
+			tags: fakeStore.get(id),
 		},
 	} as any
 })
@@ -77,6 +79,8 @@ const prepare = (): {
 test('get property tags data', async (t) => {
 	const context = createContext()
 	const propertyAddress = '0x01234567890'
+	const tags = 'test dummy'
+	fakeStore.set(propertyAddress, tags.split(' '))
 
 	await httpTrigger(context, createReq(propertyAddress))
 
@@ -84,7 +88,7 @@ test('get property tags data', async (t) => {
 		status: 200,
 		body: {
 			id: propertyAddress,
-			tags: ['test', 'dummy'],
+			tags: tags.split(' '),
 		},
 	})
 })
@@ -95,6 +99,7 @@ test('post peoperty tags data', async (t) => {
 	const method = 'POST'
 	const propertyAddress = '0x01234567890'
 	const tags = 'test dummy'
+	fakeStore.set(propertyAddress, tags.split(' '))
 
 	await httpTrigger(
 		context,
@@ -106,6 +111,28 @@ test('post peoperty tags data', async (t) => {
 		body: {
 			id: propertyAddress,
 			tags: tags.split(' '),
+		},
+	})
+})
+
+test('post peoperty tags data with old tags is empty', async (t) => {
+	const { address: accountAddress, signature, message } = prepare()
+	const context = createContext()
+	const method = 'POST'
+	const propertyAddress = '0x01234567890'
+	const tags = undefined
+	fakeStore.set(propertyAddress, tags)
+
+	await httpTrigger(
+		context,
+		createReq(propertyAddress, accountAddress, message, signature, tags, method)
+	)
+
+	t.deepEqual(context.res, {
+		status: 200,
+		body: {
+			id: propertyAddress,
+			tags: [],
 		},
 	})
 })
