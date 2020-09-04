@@ -6,7 +6,8 @@ import { httpTrigger } from '.'
 import * as db from '../db/property-tags'
 import * as tagDB from '../db/tag'
 
-const fakeStore: ReadonlyMap<string, readonly string[] | undefined> = new Map()
+// eslint-disable-next-line functional/prefer-readonly-type
+const fakeStore: Map<string, string[] | undefined> = new Map()
 
 stub(db, 'reader').callsFake(() => async (id: string) => {
 	return {
