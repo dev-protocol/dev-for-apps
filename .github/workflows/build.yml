@@ -35,7 +35,7 @@ jobs:
 
   deploy:
     needs: build
-    if: ${{ github.event_name != 'pull_request' && contains(github.ref, 'main') }}
+    if: ${{ github.event_name != 'pull_request' && contains(github.ref, 'v1') }}
 
     runs-on: ubuntu-latest
 
