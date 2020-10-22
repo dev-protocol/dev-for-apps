@@ -4696,6 +4696,11 @@ iferr@^0.1.5:
   resolved "https://registry.yarnpkg.com/iferr/-/iferr-0.1.5.tgz#c60eed69e6d8fdb6b3104a1fcbca1c192dc5b501"
   integrity sha1-xg7taebY/bazEEofy8ocGS3FtQE=
 
+immer@^7.0.14:
+  version "7.0.14"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-7.0.14.tgz#3e605f8584b15a9520d2f2f3fda9441cc9170d25"
+  integrity sha512-BxCs6pJwhgSEUEOZjywW7OA8DXVzfHjkBelSEl0A+nEu0+zS4cFVdNOONvt55N4WOm8Pu4xqSPYxhm1Lv2iBBA==
+
 immer@^7.0.8:
   version "7.0.9"
   resolved "https://registry.yarnpkg.com/immer/-/immer-7.0.9.tgz#28e7552c21d39dd76feccd2b800b7bc86ee4a62e"
@@ -6296,7 +6301,7 @@ node-abi@^2.7.0:
   dependencies:
     semver "^5.4.1"
 
-node-addon-api@^3.0.0:
+node-addon-api@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-3.0.2.tgz#04bc7b83fd845ba785bb6eae25bc857e1ef75681"
   integrity sha512-+D4s2HCnxPd5PjjI0STKwncjXTUKKqm74MDMz9OPXavjsGmjkvwgLtA5yoxJUdmpj52+2u+RrXgPipahKczMKg==
@@ -8370,14 +8375,14 @@ shallowequal@^1.1.0:
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
   integrity sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==
 
-sharp@0.26.0:
-  version "0.26.0"
-  resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.26.0.tgz#ff4c8d3200a7a1f76c69c53fd11879609d2ff062"
-  integrity sha512-MNldekb9ZnliJAD+qP6uBTf3Wd6HaDVhKYbxXG+SQDvit9fa+2X4wECJvMRF8FLdY4saojrz3BHsnt4OmJw7xg==
+sharp@0.26.2:
+  version "0.26.2"
+  resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.26.2.tgz#3d5777d246ae32890afe82a783c1cbb98456a88c"
+  integrity sha512-bGBPCxRAvdK9bX5HokqEYma4j/Q5+w8Nrmb2/sfgQCLEUx/HblcpmOfp59obL3+knIKnOhyKmDb4tEOhvFlp6Q==
   dependencies:
     color "^3.1.2"
     detect-libc "^1.0.3"
-    node-addon-api "^3.0.0"
+    node-addon-api "^3.0.2"
     npmlog "^4.1.2"
     prebuild-install "^5.3.5"
     semver "^7.3.2"
@@ -8902,6 +8907,33 @@ strapi-helper-plugin@3.2.3:
     styled-components "^5.0.0"
     whatwg-fetch "^3.3.1"
 
+strapi-helper-plugin@3.2.5:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/strapi-helper-plugin/-/strapi-helper-plugin-3.2.5.tgz#dd3f30b982a9e3cf8aa14d79e2be981474cac620"
+  integrity sha512-tfg7/4FRdcJO+rDmrX87S8xa8SX7rxnpHDln3XkLtXkcooS7bVs3+yvSbONy9B+PcoitoOVEnwY2DJbOG5vQqQ==
+  dependencies:
+    "@buffetjs/core" "3.3.1"
+    "@buffetjs/custom" "3.3.1"
+    "@buffetjs/hooks" "3.3.1"
+    "@buffetjs/icons" "3.3.1"
+    "@buffetjs/styles" "3.3.1"
+    "@buffetjs/utils" "3.3.1"
+    bootstrap "^4.5.2"
+    classnames "^2.2.5"
+    immutable "^3.8.2"
+    invariant "^2.2.1"
+    lodash "4.17.19"
+    moment "^2.16.0"
+    react "^16.13.1"
+    react-dom "^16.9.0"
+    react-helmet "^6.1.0"
+    react-intl "4.5.0"
+    react-router "^5.0.0"
+    react-router-dom "^5.0.0"
+    reactstrap "8.4.1"
+    styled-components "^5.0.0"
+    whatwg-fetch "^3.3.1"
+
 strapi-plugin-content-manager@3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/strapi-plugin-content-manager/-/strapi-plugin-content-manager-3.2.3.tgz#ca6ddc5b186cf5b890e8c083c9ea0c346c00692b"
@@ -8987,10 +9019,10 @@ strapi-plugin-email@3.2.3:
     strapi-provider-email-sendmail "3.2.3"
     strapi-utils "3.2.3"
 
-strapi-plugin-upload@3.2.3:
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/strapi-plugin-upload/-/strapi-plugin-upload-3.2.3.tgz#e9a128c7729319b58eaca9fd96f4d2eec2613552"
-  integrity sha512-DBCSDy4GV3pRZRiP3vnwe+OV1NLMzw23Bzb6jSrqOUNnAE76ddAIIZuO49VmS2Dw99QQA1Va1bHhyxug9gmg1A==
+strapi-plugin-upload@3.2.5:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-upload/-/strapi-plugin-upload-3.2.5.tgz#5a14b4fdad383676963525a7f12dab2ea0ed302e"
+  integrity sha512-USTgG5SW2AE+F8/tZbuzhwv5ldvnGbGixxTQ0ptEQefvaXNdHw/1mJT0KCxpAQLm+5xlN6KidsvwfDs0vcrc7g==
   dependencies:
     "@buffetjs/core" "3.3.1"
     "@buffetjs/custom" "3.3.1"
@@ -9000,7 +9032,7 @@ strapi-plugin-upload@3.2.3:
     "@buffetjs/utils" "3.3.1"
     byte-size "^6.2.0"
     cropperjs "^1.5.6"
-    immer "^7.0.8"
+    immer "^7.0.14"
     immutable "^3.8.2"
     is-valid-domain "0.0.15"
     koa-range "0.3.0"
@@ -9015,10 +9047,10 @@ strapi-plugin-upload@3.2.3:
     react-router "^5.0.0"
     react-router-dom "^5.0.0"
     reactstrap "8.4.1"
-    sharp "0.26.0"
-    strapi-helper-plugin "3.2.3"
-    strapi-provider-upload-local "3.2.3"
-    strapi-utils "3.2.3"
+    sharp "0.26.2"
+    strapi-helper-plugin "3.2.5"
+    strapi-provider-upload-local "3.2.5"
+    strapi-utils "3.2.5"
     stream-to-array "^2.3.0"
     uuid "^3.2.1"
 
@@ -9062,15 +9094,27 @@ strapi-provider-email-sendmail@3.2.3:
     sendmail "^1.6.1"
     strapi-utils "3.2.3"
 
-strapi-provider-upload-local@3.2.3:
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/strapi-provider-upload-local/-/strapi-provider-upload-local-3.2.3.tgz#28645eb98e17511d424e973c90c5c7278a816e45"
-  integrity sha512-egXUXHsCVApIglNevEjoHtgTIRexzCbCqxYjwljHLFH5Jces3sV+ziKCEQiwdsLiRPnLxc6Ya4vJMk5235L2Iw==
+strapi-provider-upload-local@3.2.5:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/strapi-provider-upload-local/-/strapi-provider-upload-local-3.2.5.tgz#fb9da60878c55362a9384965469bac452b9de1e2"
+  integrity sha512-8y1ziW/etILDKEWgfbyD28bJ2gnJL8a1tyPff8BDbSgcyyMs1lsdqhGczEZdIhR3r86sQdX3WvRJQIQASdT3Sg==
 
 strapi-utils@3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/strapi-utils/-/strapi-utils-3.2.3.tgz#327a0f94ec15857c01d9766a1b50aaf2898b78cd"
   integrity sha512-esCNsCJaJeEyA66AkKWsDo372y5c639JL/2AhKxl1WefS3TIW3qlT/Kuc3CmB2KAaG6PPTFEYqd2q4EImvRlSQ==
+  dependencies:
+    "@sindresorhus/slugify" "1.1.0"
+    date-fns "^2.8.1"
+    lodash "4.17.19"
+    pino "^4.7.1"
+    pluralize "^8.0.0"
+    yup "0.29.3"
+
+strapi-utils@3.2.5:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/strapi-utils/-/strapi-utils-3.2.5.tgz#9e757ca9009c2211eec491514b2f0f3c7865f035"
+  integrity sha512-d9CuD/DLV9ppmjtxpXtuZCl9MMnz8jIJxw7DS8t6By0DRl31CrM7lsNUo4iXj0YSFLa0NCotVYUozcY+vtDwnw==
   dependencies:
     "@sindresorhus/slugify" "1.1.0"
     date-fns "^2.8.1"
