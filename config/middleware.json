@@ -2,8 +2,7 @@
   "timeout": 100,
   "load": {
     "before": ["responseTime", "logger", "cors", "responses", "gzip"],
-    "order": ["parser", "router"],
-    "after": ["web3SignRecover"]
+    "order": [],
+    "after": ["parser", "web3SignRecover", "router"]
   }
 }
-
