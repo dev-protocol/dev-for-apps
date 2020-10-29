@@ -1,36 +1,32 @@
 {
-  "kind": "collectionType",
-  "collectionName": "accounts",
-  "info": {
-    "name": "Account",
-    "description": ""
-  },
-  "options": {
-    "increments": true,
-    "timestamps": true,
-    "draftAndPublish": false
-  },
-  "attributes": {
-    "name": {
-      "type": "string"
-    },
-    "biography": {
-      "type": "text"
-    },
-    "portrait": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
-    "address": {
-      "type": "uid",
-      "required": true
-    }
-  }
+	"kind": "collectionType",
+	"collectionName": "accounts",
+	"info": {
+		"name": "Account",
+		"description": ""
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": false
+	},
+	"attributes": {
+		"name": {
+			"type": "string"
+		},
+		"biography": {
+			"type": "text"
+		},
+		"portrait": {
+			"model": "file",
+			"via": "related",
+			"allowedTypes": ["images", "files", "videos"],
+			"plugin": "upload",
+			"required": false
+		},
+		"address": {
+			"type": "uid",
+			"required": true
+		}
+	}
 }
