@@ -10011,7 +10011,7 @@ strapi-provider-email-sendmail@3.2.3:
     sendmail "^1.6.1"
     strapi-utils "3.2.3"
 
-strapi-provider-upload-azure-storage@^1.1.1:
+strapi-provider-upload-azure-storage@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/strapi-provider-upload-azure-storage/-/strapi-provider-upload-azure-storage-1.1.1.tgz#b90415e3c048717fd3205396da58b46acdf6f985"
   integrity sha512-rWnI4R6MuGkgcyaIz66l5fZSPlbTtgAxHs/Ek2xk596/S0IhyPSC6RkGiFA7tTKHEYRjSwZ1hvADykv69Q7jXw==
@@ -11218,7 +11218,7 @@ web3-utils@1.3.0:
     underscore "1.9.1"
     utf8 "3.0.0"
 
-web3@^1.3.0:
+web3@1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/web3/-/web3-1.3.0.tgz#8fe4cd6e2a21c91904f343ba75717ee4c76bb349"
   integrity sha512-4q9dna0RecnrlgD/bD1C5S+81Untbd6Z/TBD7rb+D5Bvvc0Wxjr4OP70x+LlnwuRDjDtzBwJbNUblh2grlVArw==
