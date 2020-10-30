@@ -1,5 +1,5 @@
 {
-  "web3SignRecover": {
-    "enabled": true
-  }
+	"web3SignRecover": {
+		"enabled": true
+	}
 }
