@@ -1,0 +1,12 @@
+{
+	"env": {
+		"commonjs": true,
+		"es6": true,
+		"node": true,
+		"browser": false
+	},
+	"extends": ["eslint:recommended", "xo", "prettier"],
+	"globals": {
+		"strapi": true
+	}
+}
