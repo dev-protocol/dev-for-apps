@@ -68,7 +68,7 @@ export const httpTrigger: AzureFunction = async function (
 			const result = await writer(CosmosClient)({ id, tags: splitedTags }).then(
 				(r: ItemResponse<PropertyTags>) => {
 					// eslint-disable-next-line functional/functional-parameters
-					return updateTags(readTags?.tags, splitedTags).then(() => {
+					return updateTags(readTags?.tags || [], splitedTags).then(() => {
 						return r
 					})
 				}
