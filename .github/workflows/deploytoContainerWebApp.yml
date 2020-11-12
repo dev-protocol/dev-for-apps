@@ -21,13 +21,13 @@ jobs:
       - name: Build and push image to ACR
         id: build-image
         run: |
-          docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t devforapps.azurecr.io/devforappsrest-img:${{ github.sha }}
-          docker push devforapps.azurecr.io/devforappsrest-img:${{ github.sha }}
+          docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t devforapps.azurecr.io/devforappseqbis-img:${{ github.sha }}
+          docker push devforapps.azurecr.io/devforappseqbis-img:${{ github.sha }}
 
       - name: Set Web App ACR authentication
         uses: Azure/appservice-settings@v1
         with:
-          app-name: dev-for-apps-rest
+          app-name: dev-for-apps-Eqbis
           app-settings-json: |
             [
               {
@@ -44,10 +44,10 @@ jobs:
                 "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
                 "value": "${{ secrets.acr_devforapps_password }}",
                 "slotSetting": false
-              }            
+              }
             ]
 
       - uses: azure/webapps-deploy@v2
         with:
-          app-name: dev-for-apps-rest
-          images: devforapps.azurecr.io/devforappsrest-img:${{ github.sha }}
+          app-name: dev-for-apps-Eqbis
+          images: devforapps.azurecr.io/devforappseqbis-img:${{ github.sha }}
