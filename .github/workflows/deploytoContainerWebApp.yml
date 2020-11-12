@@ -4,50 +4,50 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: 'Checkout Github Action' 
-      uses: actions/checkout@master
-    
-    - name: 'Login via Azure CLI'
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-    
-    - uses: azure/docker-login@v1
-      with:
-        login-server: devforapps.azurecr.io
-        username: ${{ secrets.acr_devforapps_username }}
-        password: ${{ secrets.acr_devforapps_password }}
-    
-    - name: Build and push image to ACR
-      id: build-image
-      run: |
-        docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t devforapps.azurecr.io/devforappsrest-img:${{ github.sha }}
-        docker push devforapps.azurecr.io/devforappsrest-img:${{ github.sha }}
+      - name: 'Checkout Github Action'
+        uses: actions/checkout@master
 
-    - name: Set Web App ACR authentication
-      uses: Azure/appservice-settings@v1
-      with: 
-        app-name: dev-for-apps-rest
-        app-settings-json: | 
-          [
-            {
-              "name": "DOCKER_REGISTRY_SERVER_URL",
-              "value": "devforapps.azurecr.io",
-              "slotSetting": false
-            },
-            {
-              "name": "DOCKER_REGISTRY_SERVER_USERNAME",
-              "value": "${{ secrets.acr_devforapps_username }}",
-              "slotSetting": false
-            },
-            {
-              "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
-              "value": "${{ secrets.acr_devforapps_password }}",
-              "slotSetting": false
-            }            
-          ]
-      
-    - uses: azure/webapps-deploy@v2
-      with:
-        app-name: dev-for-apps-rest
-        images: devforapps.azurecr.io/devforappsrest-img:${{ github.sha }}
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - uses: azure/docker-login@v1
+        with:
+          login-server: devforapps.azurecr.io
+          username: ${{ secrets.acr_devforapps_username }}
+          password: ${{ secrets.acr_devforapps_password }}
+
+      - name: Build and push image to ACR
+        id: build-image
+        run: |
+          docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t devforapps.azurecr.io/devforappsrest-img:${{ github.sha }}
+          docker push devforapps.azurecr.io/devforappsrest-img:${{ github.sha }}
+
+      - name: Set Web App ACR authentication
+        uses: Azure/appservice-settings@v1
+        with:
+          app-name: dev-for-apps-rest
+          app-settings-json: |
+            [
+              {
+                "name": "DOCKER_REGISTRY_SERVER_URL",
+                "value": "devforapps.azurecr.io",
+                "slotSetting": false
+              },
+              {
+                "name": "DOCKER_REGISTRY_SERVER_USERNAME",
+                "value": "${{ secrets.acr_devforapps_username }}",
+                "slotSetting": false
+              },
+              {
+                "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
+                "value": "${{ secrets.acr_devforapps_password }}",
+                "slotSetting": false
+              }            
+            ]
+
+      - uses: azure/webapps-deploy@v2
+        with:
+          app-name: dev-for-apps-rest
+          images: devforapps.azurecr.io/devforappsrest-img:${{ github.sha }}
