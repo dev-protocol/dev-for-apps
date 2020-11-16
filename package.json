@@ -28,7 +28,7 @@
 		"strapi-plugin-content-manager": "3.3.2",
 		"strapi-plugin-content-type-builder": "3.3.2",
 		"strapi-plugin-email": "3.3.2",
-		"strapi-plugin-upload": "3.3.2",
+		"strapi-plugin-upload": "3.3.3",
 		"strapi-plugin-users-permissions": "3.3.2",
 		"strapi-provider-upload-azure-storage": "1.1.1",
 		"strapi-utils": "3.3.2",
