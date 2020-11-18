@@ -28,7 +28,7 @@
 			"plugin": "upload",
 			"required": false
 		},
-		"avatar_image": {
+		"avatar": {
 			"model": "file",
 			"via": "related",
 			"allowedTypes": ["images", "files", "videos"],
