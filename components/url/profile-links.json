@@ -1,0 +1,16 @@
+{
+	"collectionName": "components_url_profile_links",
+	"info": {
+		"name": "profile_links",
+		"icon": "address-card"
+	},
+	"options": {},
+	"attributes": {
+		"github": {
+			"type": "string"
+		},
+		"website": {
+			"type": "string"
+		}
+	}
+}

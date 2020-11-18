@@ -2,7 +2,8 @@
 	"kind": "collectionType",
 	"collectionName": "properties",
 	"info": {
-		"name": "Property"
+		"name": "Property",
+		"description": ""
 	},
 	"options": {
 		"increments": true,
@@ -21,6 +22,13 @@
 			"type": "text"
 		},
 		"cover_image": {
+			"model": "file",
+			"via": "related",
+			"allowedTypes": ["images", "files", "videos"],
+			"plugin": "upload",
+			"required": false
+		},
+		"avatar_image": {
 			"model": "file",
 			"via": "related",
 			"allowedTypes": ["images", "files", "videos"],

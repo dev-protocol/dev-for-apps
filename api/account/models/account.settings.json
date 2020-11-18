@@ -27,6 +27,11 @@
 		"address": {
 			"type": "uid",
 			"required": true
+		},
+		"links": {
+			"type": "component",
+			"repeatable": false,
+			"component": "url.profile-links"
 		}
 	}
 }
