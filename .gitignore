@@ -112,3 +112,9 @@ license.txt
 exports
 .cache
 build
+
+############################
+# Strapi is updating automatically by Renovate.
+############################
+
+.strapi-updater.json
