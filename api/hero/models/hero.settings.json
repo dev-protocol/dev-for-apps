@@ -1,0 +1,19 @@
+{
+	"kind": "singleType",
+	"collectionName": "heroes",
+	"info": {
+		"name": "Hero"
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": true
+	},
+	"attributes": {
+		"carousel": {
+			"type": "component",
+			"repeatable": true,
+			"component": "carousel.hero-carousel"
+		}
+	}
+}

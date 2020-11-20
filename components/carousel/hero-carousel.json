@@ -1,0 +1,24 @@
+{
+	"collectionName": "components_carousel_hero_carousels",
+	"info": {
+		"name": "Hero Carousel",
+		"icon": "asterisk",
+		"description": ""
+	},
+	"options": {},
+	"attributes": {
+		"description": {
+			"type": "richtext"
+		},
+		"image": {
+			"model": "file",
+			"via": "related",
+			"allowedTypes": ["images", "files", "videos"],
+			"plugin": "upload",
+			"required": false
+		},
+		"background_color": {
+			"type": "string"
+		}
+	}
+}
