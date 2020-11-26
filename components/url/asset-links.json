@@ -1,0 +1,20 @@
+{
+	"collectionName": "components_url_urls",
+	"info": {
+		"name": "Asset_links",
+		"icon": "link",
+		"description": ""
+	},
+	"options": {},
+	"attributes": {
+		"github": {
+			"type": "string"
+		},
+		"twitter": {
+			"type": "string"
+		},
+		"website": {
+			"type": "string"
+		}
+	}
+}
