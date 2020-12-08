@@ -10,7 +10,7 @@ module.exports = (strapi) => {
 				const { authorization } = ctx.request.headers
 				if (!authorization) {
 					if (
-						(ctx.method === 'POST' || ctx.method === 'PUT') &&
+						(ctx.method === 'POST' || ctx.method === 'PUT' || ctx.method === 'DELETE') &&
 						(ctx.url.startsWith('/accounts') ||
 							ctx.url.startsWith('/properties') ||
 							ctx.url === '/upload')
