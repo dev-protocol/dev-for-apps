@@ -4,5 +4,16 @@
 		"before": ["responseTime", "logger", "cors", "responses", "gzip"],
 		"order": [],
 		"after": ["parser", "web3SignRecover", "router"]
+	},
+	"settings": {
+		"cors": {
+			"headers": [
+				"Content-Type",
+				"Authorization",
+				"Origin",
+				"Accept",
+				"X-Dev-Auth"
+			]
+		}
 	}
 }

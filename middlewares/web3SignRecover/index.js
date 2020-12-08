@@ -1,5 +1,11 @@
 const Web3 = require('web3')
 
+const getXDevAuthToken = (ctx) => {
+	const { 'x-dev-auth': xDevAuth } = ctx.request.headers
+	const [address, signature, ...message] = xDevAuth.split(';')
+	return { signMessage: message.join(';'), signature, address }
+}
+
 module.exports = (strapi) => {
 	return {
 		initialize() {
@@ -15,13 +21,10 @@ module.exports = (strapi) => {
 							ctx.method === 'DELETE') &&
 						(ctx.url.startsWith('/accounts') ||
 							ctx.url.startsWith('/properties') ||
-							ctx.url === '/upload')
+							ctx.url.startsWith('/upload'))
 					) {
-						const {
-							signMessage: message,
-							signature,
-							address,
-						} = ctx.request.body
+						const { signMessage: message, signature, address } =
+							ctx.method === 'DELETE' ? getXDevAuthToken(ctx) : ctx.request.body
 						ctx.log.debug('params: ', message, signature, address)
 						if (!message || !signature || !address) {
 							ctx.response.unauthorized('invalid request')
