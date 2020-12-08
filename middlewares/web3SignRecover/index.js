@@ -15,7 +15,7 @@ module.exports = (strapi) => {
 							ctx.method === 'DELETE') &&
 						(ctx.url.startsWith('/accounts') ||
 							ctx.url.startsWith('/properties') ||
-							ctx.url === '/upload')
+							ctx.url.startsWith('/upload'))
 					) {
 						const {
 							signMessage: message,
