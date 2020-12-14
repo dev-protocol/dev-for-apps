@@ -1,0 +1,52 @@
+{
+	"routes": [
+		{
+			"method": "GET",
+			"path": "/property-settings",
+			"handler": "property-setting.find",
+			"config": {
+				"policies": []
+			}
+		},
+		{
+			"method": "GET",
+			"path": "/property-settings/count",
+			"handler": "property-setting.count",
+			"config": {
+				"policies": []
+			}
+		},
+		{
+			"method": "GET",
+			"path": "/property-settings/:id",
+			"handler": "property-setting.findOne",
+			"config": {
+				"policies": []
+			}
+		},
+		{
+			"method": "POST",
+			"path": "/property-settings",
+			"handler": "property-setting.create",
+			"config": {
+				"policies": []
+			}
+		},
+		{
+			"method": "PUT",
+			"path": "/property-settings/:id",
+			"handler": "property-setting.update",
+			"config": {
+				"policies": []
+			}
+		},
+		{
+			"method": "DELETE",
+			"path": "/property-settings/:id",
+			"handler": "property-setting.delete",
+			"config": {
+				"policies": []
+			}
+		}
+	]
+}
