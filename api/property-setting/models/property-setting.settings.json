@@ -1,0 +1,26 @@
+{
+	"kind": "collectionType",
+	"collectionName": "property_settings",
+	"info": {
+		"name": "PropertySetting"
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": false
+	},
+	"attributes": {
+		"property_address": {
+			"type": "string",
+			"required": true
+		},
+		"account_address": {
+			"type": "string",
+			"required": true
+		},
+		"private_staking": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

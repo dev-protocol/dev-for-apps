@@ -21,6 +21,7 @@ module.exports = (strapi) => {
 							ctx.method === 'DELETE') &&
 						(ctx.url.startsWith('/accounts') ||
 							ctx.url.startsWith('/properties') ||
+							ctx.url.startsWith('/property-settings') ||
 							ctx.url.startsWith('/upload'))
 					) {
 						const { signMessage: message, signature, address } =
