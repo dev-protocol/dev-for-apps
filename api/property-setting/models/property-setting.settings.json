@@ -2,7 +2,8 @@
 	"kind": "collectionType",
 	"collectionName": "property_settings",
 	"info": {
-		"name": "PropertySetting"
+		"name": "PropertySetting",
+		"description": ""
 	},
 	"options": {
 		"increments": true,
@@ -14,7 +15,7 @@
 			"type": "string",
 			"required": true
 		},
-		"account_address": {
+		"address": {
 			"type": "string",
 			"required": true
 		},
