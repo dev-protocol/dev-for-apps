@@ -1,0 +1,15 @@
+{
+	"collectionName": "components_property_settings",
+	"info": {
+		"name": "Property Setting",
+		"icon": "cogs",
+		"description": ""
+	},
+	"options": {},
+	"attributes": {
+		"private_staking": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

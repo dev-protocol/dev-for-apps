@@ -39,6 +39,11 @@
 			"allowedTypes": ["images", "files", "videos"],
 			"plugin": "upload",
 			"required": false
+		},
+		"property_settings": {
+			"type": "component",
+			"repeatable": false,
+			"component": "setting.property-setting"
 		}
 	}
 }
