@@ -22,7 +22,7 @@
 	"dependencies": {
 		"knex": "0.21.15",
 		"pg": "latest",
-		"strapi": "3.4.1",
+		"strapi": "3.4.2",
 		"strapi-admin": "3.4.1",
 		"strapi-connector-bookshelf": "3.4.1",
 		"strapi-plugin-content-manager": "3.4.1",
