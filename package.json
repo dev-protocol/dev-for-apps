@@ -20,7 +20,7 @@
 		"prettier": "2.2.1"
 	},
 	"dependencies": {
-		"knex": "0.21.16",
+		"knex": "0.21.17",
 		"pg": "latest",
 		"strapi": "3.4.5",
 		"strapi-admin": "3.4.5",
