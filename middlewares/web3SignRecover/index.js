@@ -36,7 +36,14 @@ module.exports = (strapi) => {
 						const recoverAccount = web3.eth.accounts.recover(message, signature)
 						ctx.log.debug('recover: ', recoverAccount, address)
 
-						if (recoverAccount !== address) {
+						// NOTE: special case
+						//   * properties's key is `property` address, auth key is account_address
+						const compareAddress =
+							ctx.method !== 'DELETE' && ctx.url.startsWith('/properties')
+								? ctx.request.body.account_address
+								: address
+
+						if (recoverAccount !== compareAddress) {
 							ctx.response.unauthorized('invalid request')
 						}
 					}

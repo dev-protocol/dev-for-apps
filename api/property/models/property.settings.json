@@ -39,6 +39,9 @@
 			"type": "component",
 			"repeatable": false,
 			"component": "url.asset-links"
+		},
+		"account_address": {
+			"type": "string"
 		}
 	}
 }
