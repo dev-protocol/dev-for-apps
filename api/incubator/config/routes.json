@@ -1,0 +1,52 @@
+{
+	"routes": [
+		{
+			"method": "GET",
+			"path": "/incubators",
+			"handler": "incubator.find",
+			"config": {
+				"policies": []
+			}
+		},
+		{
+			"method": "GET",
+			"path": "/incubators/count",
+			"handler": "incubator.count",
+			"config": {
+				"policies": []
+			}
+		},
+		{
+			"method": "GET",
+			"path": "/incubators/:id",
+			"handler": "incubator.findOne",
+			"config": {
+				"policies": []
+			}
+		},
+		{
+			"method": "POST",
+			"path": "/incubators",
+			"handler": "incubator.create",
+			"config": {
+				"policies": []
+			}
+		},
+		{
+			"method": "PUT",
+			"path": "/incubators/:id",
+			"handler": "incubator.update",
+			"config": {
+				"policies": []
+			}
+		},
+		{
+			"method": "DELETE",
+			"path": "/incubators/:id",
+			"handler": "incubator.delete",
+			"config": {
+				"policies": []
+			}
+		}
+	]
+}
