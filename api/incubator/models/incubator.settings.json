@@ -19,6 +19,9 @@
 		},
 		"verifier_id": {
 			"type": "string"
+		},
+		"tag": {
+			"type": "string"
 		}
 	}
 }
