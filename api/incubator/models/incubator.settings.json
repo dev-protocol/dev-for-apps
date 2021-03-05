@@ -1,0 +1,27 @@
+{
+	"kind": "collectionType",
+	"collectionName": "incubators",
+	"info": {
+		"name": "Incubator",
+		"description": ""
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": false
+	},
+	"attributes": {
+		"name": {
+			"type": "uid"
+		},
+		"property": {
+			"model": "property"
+		},
+		"verifier_id": {
+			"type": "string"
+		},
+		"tag": {
+			"type": "string"
+		}
+	}
+}
