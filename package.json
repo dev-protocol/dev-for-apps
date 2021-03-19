@@ -10,7 +10,8 @@
 		"strapi": "strapi",
 		"lint": "yarn lint:eslint && yarn lint:format",
 		"lint:eslint": "eslint . --ext .ts,.js --fix",
-		"lint:format": "prettier --write '**/*.{ts,js,json,md,yml}'"
+		"lint:format": "prettier --write '**/*.{ts,js,json,md,yml}'",
+		"prepare": "husky install"
 	},
 	"devDependencies": {
 		"eslint": "7.22.0",
@@ -33,11 +34,6 @@
 		"strapi-provider-upload-azure-storage": "1.1.2",
 		"strapi-utils": "3.5.3",
 		"web3": "1.3.4"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "yarn lint"
-		}
 	},
 	"author": {
 		"name": "A Strapi developer"
