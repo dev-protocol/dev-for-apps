@@ -1,56 +1,35 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy container app to Azure Web App - dev-for-apps-Eqbis
+
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Checkout Github Action'
-        uses: actions/checkout@master
+    runs-on: 'ubuntu-latest'
 
-      - name: 'Login via Azure CLI'
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+    steps:
+      - uses: actions/checkout@master
 
       - uses: azure/docker-login@v1
         with:
-          login-server: devforapps.azurecr.io
-          username: ${{ secrets.acr_devforapps_username }}
-          password: ${{ secrets.acr_devforapps_password }}
+          login-server: https://devforapps.azurecr.io/
+          username: ${{ secrets.AzureAppService_ContainerUsername_94050b70f96c4a0386ad00312f346d4a }}
+          password: ${{ secrets.AzureAppService_ContainerPassword_1b0e5d0ef21f4efebc3de188e498dc10 }}
 
-      - name: Build and push image to ACR
-        id: build-image
-        run: |
-          docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t devforapps.azurecr.io/devforappseqbis-img:${{ github.sha }}
-          docker push devforapps.azurecr.io/devforappseqbis-img:${{ github.sha }}
+      - run: |
+          docker build . -t devforapps.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_94050b70f96c4a0386ad00312f346d4a }}/devforappseqbis-img:${{ github.sha }}
+          docker push devforapps.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_94050b70f96c4a0386ad00312f346d4a }}/devforappseqbis-img:${{ github.sha }}
 
-      - name: Set Web App ACR authentication
-        uses: Azure/appservice-settings@v1
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
         with:
-          app-name: dev-for-apps-Eqbis
-          app-settings-json: |
-            [
-              {
-                "name": "DOCKER_REGISTRY_SERVER_URL",
-                "value": "devforapps.azurecr.io",
-                "slotSetting": false
-              },
-              {
-                "name": "DOCKER_REGISTRY_SERVER_USERNAME",
-                "value": "${{ secrets.acr_devforapps_username }}",
-                "slotSetting": false
-              },
-              {
-                "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
-                "value": "${{ secrets.acr_devforapps_password }}",
-                "slotSetting": false
-              }
-            ]
-
-      - uses: azure/webapps-deploy@v2
-        with:
-          app-name: dev-for-apps-Eqbis
-          images: devforapps.azurecr.io/devforappseqbis-img:${{ github.sha }}
+          app-name: 'dev-for-apps-Eqbis'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_78d036ba738a42aaa6b8be767c1f205f }}
+          images: 'devforapps.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_94050b70f96c4a0386ad00312f346d4a }}/devforappseqbis-img:${{ github.sha }}'
