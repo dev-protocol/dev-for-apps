@@ -14,23 +14,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up Node.js version
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
+      - name: Set up Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
 
-    - name: npm install, build, and test
-      run: |
-        npm install
-        npm run build --if-present
+      - name: install and build
+        run: |
+          yarn install
+          yarn build
 
-    - name: 'Deploy to Azure Web App'
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'dev-for-apps-next'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a02e7f5fbc01424bb9b3b7e53e73ae92 }}
-        package: .
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'dev-for-apps-next'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_a02e7f5fbc01424bb9b3b7e53e73ae92 }}
+          package: .
