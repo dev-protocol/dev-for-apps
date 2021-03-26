@@ -23,8 +23,10 @@ jobs:
 
       - name: install and build
         run: |
+          rm -rf build
           npm install
           npm run build --production
+          rm -rf .cache
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
