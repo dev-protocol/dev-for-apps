@@ -10950,10 +10950,10 @@ strapi-provider-email-sendmail@3.5.4:
     sendmail "^1.6.1"
     strapi-utils "3.5.4"
 
-strapi-provider-upload-azure-storage@1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/strapi-provider-upload-azure-storage/-/strapi-provider-upload-azure-storage-1.1.2.tgz#5a7e6e3466b5c39978e7ec67f2318d7b4932102d"
-  integrity sha512-URdbUsaj1rdt941hSE4z7y8dRXoPpcRCb4MwUIr0gLVD3RW0qiqgPHBgJHz8hS4MfEQ0Gx9OwfLURMhA2LWcyg==
+strapi-provider-upload-azure-storage@1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/strapi-provider-upload-azure-storage/-/strapi-provider-upload-azure-storage-1.1.3.tgz#3f269ce1b8a2e6483943024d6055c0c3f5889aad"
+  integrity sha512-i03uhsfZa+YRJP2X5+gUYXMQCyC2BeGds1mXc4CcIvFbAQgZ5CdNj8709M/v64HdT2szEIHYNsB+UJh/5FdGyQ==
   dependencies:
     "@azure/storage-blob" "^10.5.0"
 
