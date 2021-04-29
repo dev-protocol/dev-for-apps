@@ -6,7 +6,7 @@ RUN yarn install
 COPY . .
 RUN yarn build && yarn --production
 
-FROM strapi/strapi:3.6.0-alpine
+FROM strapi/strapi:3.6.1-alpine
 WORKDIR /srv/app
 ENV NODE_ENV="production"
 COPY --from=base /srv/app .
