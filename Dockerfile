@@ -1,4 +1,4 @@
-FROM strapi/base:12-alpine as base
+FROM strapi/base:14-alpine as base
 WORKDIR /srv/app
 COPY package.json /srv/app
 COPY yarn.lock /srv/app
