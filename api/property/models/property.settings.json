@@ -26,14 +26,16 @@
 			"via": "related",
 			"allowedTypes": ["images", "files", "videos"],
 			"plugin": "upload",
-			"required": false
+			"required": false,
+			"pluginOptions": {}
 		},
 		"avatar": {
 			"model": "file",
 			"via": "related",
 			"allowedTypes": ["images", "files", "videos"],
 			"plugin": "upload",
-			"required": false
+			"required": false,
+			"pluginOptions": {}
 		},
 		"links": {
 			"type": "component",
@@ -42,6 +44,9 @@
 		},
 		"account_address": {
 			"type": "string"
+		},
+		"tags": {
+			"collection": "tag"
 		}
 	}
 }
