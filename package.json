@@ -21,7 +21,7 @@
 		"prettier": "2.4.1"
 	},
 	"dependencies": {
-		"knex": "0.95.11",
+		"knex": "0.95.12",
 		"pg": "latest",
 		"strapi": "3.6.8",
 		"strapi-admin": "3.6.8",
