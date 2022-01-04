@@ -34,5 +34,5 @@ jobs:
         with:
           app-name: 'dev-for-apps-next'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_a02e7f5fbc01424bb9b3b7e53e73ae92 }}
+          publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
           package: .
