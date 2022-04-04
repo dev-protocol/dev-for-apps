@@ -2,6 +2,12 @@
 
 ## How to development
 
+0. run local postgresql
+
+```bash
+docker compose -f docker-compose.local.yml up -d
+```
+
 1. Copy `.env.example` and rename it to `.env`.
 
 ```bash
@@ -9,6 +15,17 @@ cp .env.example .env
 ```
 
 2. Write environment variables to `.env`. If you want to use the existing DB, please contact the administrators.
+
+example for local env:
+```
+# .env
+NODE_ENV=development
+DATABASE_HOST='localhost'
+DATABASE_PORT=5432
+DATABASE_NAME='strapi'
+DATABASE_USERNAME='strapi'
+DATABASE_PASSWORD='strapi'
+```
 
 3. Install dependencies.
 
