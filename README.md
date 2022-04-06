@@ -17,6 +17,7 @@ cp .env.example .env
 2. Write environment variables to `.env`. If you want to use the existing DB, please contact the administrators.
 
 example for local env:
+
 ```
 # .env
 NODE_ENV=development
