@@ -2,11 +2,15 @@
 
 ## How to development
 
-0. run local postgresql
+### with Docker Compose
+
+1. run strapi and postgresql with Docker Compose
 
 ```bash
 docker compose -f docker-compose.local.yml up -d
 ```
+
+### run strapi standalone
 
 1. Copy `.env.example` and rename it to `.env`.
 
@@ -40,9 +44,11 @@ yarn
 yarn develop
 ```
 
-5. Open the local Strapi on your browser and edit the content types etc. The edited result is output to JSON files managed by git.
+### change schema and more change settings
 
-6. Apply the formatter and commit.
+1. Open the local Strapi on your browser and edit the content types etc. The edited result is output to JSON files managed by git.
+
+2. Apply the formatter and commit.
 
 ```bash
 yarn lint
@@ -50,4 +56,4 @@ git add .
 git commit -am 'Your awesome changes'
 ```
 
-7. All you have to do is PR!
+3. All you have to do is PR!
