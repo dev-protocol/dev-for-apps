@@ -24,7 +24,7 @@
 	"dependencies": {
 		"knex": "2.4.2",
 		"pg": "latest",
-		"strapi": "3.6.10",
+		"strapi": "3.6.11",
 		"strapi-admin": "3.6.11",
 		"strapi-connector-bookshelf": "3.6.11",
 		"strapi-plugin-content-manager": "3.6.11",
