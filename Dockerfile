@@ -4,7 +4,7 @@ COPY package.json /srv/app
 COPY yarn.lock /srv/app
 RUN yarn install --ignore-engines
 COPY . .
-RUN yarn build && yarn --production
+RUN yarn build && yarn --production --ignore-engines
 
 FROM strapi/strapi:3.6.8-alpine
 WORKDIR /srv/app

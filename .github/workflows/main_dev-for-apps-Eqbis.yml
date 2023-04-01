@@ -18,24 +18,24 @@ jobs:
         node-version: [14.x]
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-    - name: Log in to registry
-      uses: docker/login-action@v2
-      with:
-        registry: https://devforapps.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_a62a333237464004a0428b940f2d7108 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_1213a271c11744288a22061c9e45e091 }}
+      - name: Log in to registry
+        uses: docker/login-action@v2
+        with:
+          registry: https://devforapps.azurecr.io/
+          username: ${{ secrets.AzureAppService_ContainerUsername_a62a333237464004a0428b940f2d7108 }}
+          password: ${{ secrets.AzureAppService_ContainerPassword_1213a271c11744288a22061c9e45e091 }}
 
-    - name: Build and push container image to registry
-      uses: docker/build-push-action@v4
-      with:
-        push: true
-        tags: devforapps.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a62a333237464004a0428b940f2d7108 }}/devforappseqbis-img:${{ github.sha }}
-        file: ./Dockerfile
+      - name: Build and push container image to registry
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          tags: devforapps.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a62a333237464004a0428b940f2d7108 }}/devforappseqbis-img:${{ github.sha }}
+          file: ./Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
@@ -45,11 +45,11 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-    - name: Deploy to Azure Web App
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'dev-for-apps-Eqbis'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_89cf21a2a4ee44519f9cb606db292968 }}
-        images: 'devforapps.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a62a333237464004a0428b940f2d7108 }}/devforappseqbis-img:${{ github.sha }}'
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'dev-for-apps-Eqbis'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_89cf21a2a4ee44519f9cb606db292968 }}
+          images: 'devforapps.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a62a333237464004a0428b940f2d7108 }}/devforappseqbis-img:${{ github.sha }}'
